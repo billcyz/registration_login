@@ -2,6 +2,9 @@ package user_login;
 
 import java.sql.*;
 
+//Tips: change mysql bind address, and grant mysql user remote access
+//privileges
+
 public class DbTest {
 	
 	// JDBC driver name and database URL
