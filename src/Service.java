@@ -13,7 +13,7 @@ public class Service extends HttpServlet {
 //	private long currentTime;
 	
 	public void init() throws ServletException {
-		msg = "Initial Message";
+		msg = "";
 	}
 	
 	// Handle POST request
@@ -22,27 +22,23 @@ public class Service extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
-		EpochTimeStamp currentTime = new EpochTimeStamp();
+		TimeStamp currentTime = new TimeStamp();
 		
 		PrintWriter out = response.getWriter();
 		out.println(currentTime.getEpochTime());
-//		currentTime.getEpochTime();
+		
+		doGet(request, response);
+		
+	}
+	
+	// Handle GET request
+	public void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 	
 	public void destory() {
 		
 	}
-}
-
-// Timestamp for each incoming request
-// Time is in epoch time format, and with milliseconds
-class EpochTimeStamp {
-	
-	// return current epoch timestamp in milliseconds
-	long getEpochTime() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		return timestamp.getTime();
-	}
-	
 }
 
