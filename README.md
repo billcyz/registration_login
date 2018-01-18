@@ -1,5 +1,6 @@
 # User Login & Register Servlet
 
-A java servlet project which relies on Apache Tomcat 8 web server.
+A java servlet project which runs on Apache Tomcat 8 web server.
 
-User login, register and reset.
+This project aims to provide web services for Login, Register, and Reset.
+
