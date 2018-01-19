@@ -9,12 +9,12 @@ public class DbTest {
 	
 	// JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://100.100.100.100:3306/br_test";
+	static final String DB_URL = "jdbc:mysql://127.0.0.1:3306";
 	
 	//  Database credentials
 	static final String DB = "br_test";
 	static final String USER = "root";
-	static final String PASS = "Password";
+	static final String PASS = "Cyz37212302494";
 	
 	public static void main(String[] args) {
 		
@@ -24,7 +24,7 @@ public class DbTest {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Connecting to database...");
-		    conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		    conn = DriverManager.getConnection(DB_URL + "/" + DB, USER, PASS);
 		    
 		    stmt = conn.createStatement();
 		    
