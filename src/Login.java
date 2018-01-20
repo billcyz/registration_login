@@ -3,7 +3,6 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
-import com.sun.rowset.CachedRowSetImpl;
 
 //Login parameters: userName, password
 
@@ -38,7 +37,7 @@ public class Login extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		// DB interaction
-		if(!userLogin(userName, password)) {	
+		if(!userLogin("user_info", userName, password)) {	
 			out.println("Error");
 		} else {
 			out.println("Found User");
@@ -46,26 +45,37 @@ public class Login extends HttpServlet {
 	}
 	
 	// Login function
-	public boolean userLogin(String name, String pwd) {
-		String tableName = "user_info";
-		String sql = "select username from " + tableName + " where "
-				+ "username = " + name + " and " + " password = " + password;
-		
+	// Require table name, column name, user name, and user password
+	public boolean userLogin(String tableName, String name, String pwd) {
 		try {
-			CachedRowSetImpl crs = null;
 			DbConnection con = new DbConnection("jdbc:mysql://127.0.0.1:3306", "br_test",
 					"root", "Cyz37212302494");
+			// prepared statement
+			String preparedStmt = "SELECT `name` FROM ? WHERE `name` = ?"
+					+ " and `password` = ?";
+			Class.forName(DbConnection.JDBC_DRIVER);
+			Connection conn = DriverManager.getConnection(con.DB_URL + "/" + con.DB, con.USER, con.PASS);
 			
-			con.setConnection(sql);
+			PreparedStatement pstmt = conn.prepareStatement(preparedStmt);
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, name);
+			pstmt.setString(3, pwd);
 			
-			crs = con.getRowSet();
-			while(crs.next()) {
-				System.out.println("NAME: " + crs.getString("name") + 
-						", " + "PASSWORD: " + crs.getString("password"));
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				do {
+					System.out.println("NAME: " + rs.getString("name"));
+				} while(rs.next());
+				return true;
+			} else {
+				System.out.println("No data");
+				return false;
 			}
-			crs.close();
-			return true;
 		} catch (SQLException se){
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
