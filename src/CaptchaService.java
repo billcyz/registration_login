@@ -3,6 +3,7 @@
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -42,10 +43,6 @@ public class CaptchaService {
 		int width = (fontSize + fontMargin) * count + fontMargin; // figure width
 		int height = (int) (fontSize * 1.2); // figure height
 		
-		// static value of image width and height
-//		int width = 80;
-//		int height = 25;
-		
 		int avgWidth = width / count; // average width for each character
 		int maxDegree = 26; // max rotate degree
 		
@@ -80,25 +77,9 @@ public class CaptchaService {
 	    	int degree = r.nextInt(-maxDegree, maxDegree + 1); // randomly select rotate degree
 	    	double offsetFactor = 1 - (Math.abs(degree) / (maxDegree + 1.0));
 	    	
-//	    	g.rotate(maxDegree);
-	    	
 	    	g.rotate(degree * Math.PI / 180);
 	    	int x = (int) (fontMargin + r.nextInt(avgWidth - fontSize) * offsetFactor);
 	    	int y = (int) (fontSize + r.nextInt(height - fontSize) * offsetFactor);
-	    	
-	    	System.out.println("Character is: " + c);
-	    	System.out.println("X value is: " + x);
-	    	System.out.println("Y value is: " + y);
-	    	System.out.println("FontMargin is: " + fontMargin);
-	    	System.out.println("offsetFactor is: " + offsetFactor);
-	    	System.out.println("degree is: " + degree);
-	    	
-	    	
-//	    	if(x < (fontMargin / 2)) {
-//	    		x = x + fontMargin / 2;
-//	    	} else if(x > (width - fontMargin / 2)) {
-//	    		x = width - fontMargin / 2;
-//	    	}
 	    	
 	    	g.drawString(String.valueOf(c), x, y); // (x, y) is the location of down-left corner of String
 	    	
@@ -108,6 +89,10 @@ public class CaptchaService {
 	    }
 	    
 	    
+	    // Draw lines
+	    for(int i = 0; i < 30; i++) {
+	    	drowLine(r, g, width, height);
+	    }
 	    
 //	    for(int i = 0; i < 155; i++) {
 //	    	g.setColor(Color.BLACK);
@@ -116,7 +101,7 @@ public class CaptchaService {
 //	    	int x1 = r.nextInt(6) + 1;
 //	    	int y1 = r.nextInt(12) + 1;
 //	    	g.drawLine(x, y, x + x1, y + y1);
-////	    	setPixel(g, x, y, Color.BLACK);
+//	    	setPixel(g, x, y, Color.BLACK);
 //	    }
 //	    
 //	    for(int i = 0; i < 70; i++) {
@@ -125,7 +110,11 @@ public class CaptchaService {
 //	    	int x1 = r.nextInt(12) + 1;
 //	    	int y1 = r.nextInt(6) + 1;
 //	    	g.drawLine(x, y, x - x1, y - y1);
+//	    	setPixel(g, x, y, Color.BLACK);
 //	    }
+	    
+	    // Create noise
+	    
 	    
 	    g.dispose();
 	    
@@ -133,16 +122,28 @@ public class CaptchaService {
 	}
 	
 	
-	public static void setPixel(Graphics2D image, int x, int y, Color color) {
-		image.setColor(color);
-		image.fillRect(x, y, 1, 1);
+	private static void setPixel(Graphics2D g, int x, int y, Color color) {
+		g.setColor(color);
+		g.fillRect(x, y, 1, 1);
+	}
+	
+	private static void drowLine(ThreadLocalRandom random, Graphics2D g, int width, int height) {
+		
+		System.out.println("Draw Line");
+		
+		int x = random.nextInt(width);
+		int y = random.nextInt(height);
+		int xl = random.nextInt(width);
+		int yl = random.nextInt(height);
+		g.drawLine(x, y, x + xl, y + yl);
+		setPixel(g, x, y, Color.BLACK);
 	}
 	
 	
 	public static void main(String[] args) {
 		
 		for(int i = 0; i < 20; i++) {
-			String a = genCaptcha(5);
+			String a = genCaptcha(4);
 			System.out.println(genCaptchaImg(a));
 			
 			try {
