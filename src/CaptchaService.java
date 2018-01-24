@@ -37,8 +37,8 @@ public class CaptchaService {
 		ThreadLocalRandom r = ThreadLocalRandom.current();
 		
 		int count = captcha.length();
-		int fontSize = 40; // font size
-		int fontMargin = fontSize / 10; // space between each character
+		int fontSize = 65; // font size
+		int fontMargin = fontSize / 4; // space between each character
 		int width = (fontSize + fontMargin) * count + fontMargin; // figure width
 		int height = (int) (fontSize * 1.2); // figure height
 		
@@ -47,7 +47,7 @@ public class CaptchaService {
 //		int height = 25;
 		
 		int avgWidth = width / count; // average width for each character
-		int maxDegree = 40; // max rotate degree
+		int maxDegree = 26; // max rotate degree
 		
 		System.out.println("image width is: " + width);
 		System.out.println("image height is: " + height);
@@ -94,11 +94,11 @@ public class CaptchaService {
 	    	System.out.println("degree is: " + degree);
 	    	
 	    	
-	    	if(x < (fontMargin / 2)) {
-	    		x = x + fontMargin / 2;
-	    	} else if(x > (width - fontMargin / 2)) {
-	    		x = width - fontMargin / 2;
-	    	}
+//	    	if(x < (fontMargin / 2)) {
+//	    		x = x + fontMargin / 2;
+//	    	} else if(x > (width - fontMargin / 2)) {
+//	    		x = width - fontMargin / 2;
+//	    	}
 	    	
 	    	g.drawString(String.valueOf(c), x, y); // (x, y) is the location of down-left corner of String
 	    	
@@ -142,7 +142,7 @@ public class CaptchaService {
 	public static void main(String[] args) {
 		
 		for(int i = 0; i < 20; i++) {
-			String a = genCaptcha(4);
+			String a = genCaptcha(5);
 			System.out.println(genCaptchaImg(a));
 			
 			try {
