@@ -17,9 +17,11 @@ public class CaptchaService {
 
 	static char[] chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I', 'J',
 			'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-			'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+			'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j',
+			'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
+			'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 	
-	public static String genCaptcha(int count) {
+	public String genCaptcha(int count) {
 		StringBuilder captcha = new StringBuilder();
 		
 		for(int i = 0; i < count; i++) {
@@ -34,7 +36,7 @@ public class CaptchaService {
 		return captcha.toString();
 	}
 	
-	public static BufferedImage genCaptchaImg(String captcha) {
+	public BufferedImage genCaptchaImg(String captcha) {
 		ThreadLocalRandom r = ThreadLocalRandom.current();
 		
 		int count = captcha.length();
@@ -90,9 +92,9 @@ public class CaptchaService {
 	    
 	    
 	    // Draw lines
-	    for(int i = 0; i < 30; i++) {
-	    	drowLine(r, g, width, height);
-	    }
+//	    for(int i = 0; i < 30; i++) {
+//	    	drowLine(r, g, width, height);
+//	    }
 	    
 //	    for(int i = 0; i < 155; i++) {
 //	    	g.setColor(Color.BLACK);
@@ -140,7 +142,7 @@ public class CaptchaService {
 	}
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		for(int i = 0; i < 20; i++) {
 			String a = genCaptcha(4);
@@ -148,11 +150,11 @@ public class CaptchaService {
 			
 			try {
 				BufferedImage bi = genCaptchaImg(a);
-				File outputFile = new File("saved_" + i + ".jpeg");
-				ImageIO.write(bi, "jpeg", outputFile);
+				File outputFile = new File("saved_" + i + ".png");
+				ImageIO.write(bi, "png", outputFile);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 }
