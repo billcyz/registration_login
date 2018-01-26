@@ -141,7 +141,6 @@ public class CaptchaService {
 		setPixel(g, x, y, Color.BLACK);
 	}
 	
-	
 	/*public static void main(String[] args) {
 		
 		for(int i = 0; i < 20; i++) {

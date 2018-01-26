@@ -41,10 +41,6 @@ public class Login extends HttpServlet {
 		
 		out.println("user name is: " + userName + ", " + "password is: " + password);
 		
-//		boolean a = userLogin("user_info", userName, password);
-		
-//		out.println("Result is: " + a);
-		
 		// DB interaction
 		if(!userLogin("user_info", userName, password)) {
 			// User not found
