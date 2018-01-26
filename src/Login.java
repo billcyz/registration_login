@@ -13,6 +13,7 @@ public class Login extends HttpServlet {
 	String userName;
 	String password;
 	
+	
 	public void init() throws ServletException {
 		currentTime = new TimeStamp().getEpochTime();
 	}
