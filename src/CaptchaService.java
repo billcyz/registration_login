@@ -64,10 +64,6 @@ public class CaptchaService {
 	    g.setColor(bkColor);
 	    g.fillRect(0, 0, width, height);
 	    
-	    // captcha outline
-//	    g.setColor(Color.BLACK);
-//	    g.drawRect(0, 0, width - 1, height - 1);
-	    
 	    // Draw captcha
 	    Font font = new Font(Font.MONOSPACED, Font.ITALIC|Font.BOLD, fontSize);
 	    g.setFont(font);
@@ -108,9 +104,6 @@ public class CaptchaService {
 	    	g.drawLine(x, y, x - x1, y - y1);
 	    	setPixel(g, x, y, Color.BLACK);
 	    }*/
-	    
-	    // Create noise
-	    
 	    
 	    g.dispose();
 	    

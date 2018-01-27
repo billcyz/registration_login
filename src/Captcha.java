@@ -17,7 +17,6 @@ public class Captcha extends HttpServlet {
 		
 		String a = cap.genCaptcha(4);
 		BufferedImage bi = cap.genCaptchaImg(a);
-		
 		OutputStream out = response.getOutputStream();
 		ImageIO.write(bi, "png", out);
 		out.close();
