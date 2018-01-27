@@ -90,30 +90,24 @@ public class CaptchaService {
 	    	
 	    }
 	    
+	    /*for(int i = 0; i < 155; i++) {
+	    	g.setColor(Color.BLACK);
+	    	int x = r.nextInt(width - 1);
+	    	int y = r.nextInt(height - 1);
+	    	int x1 = r.nextInt(6) + 1;
+	    	int y1 = r.nextInt(12) + 1;
+	    	g.drawLine(x, y, x + x1, y + y1);
+	    	setPixel(g, x, y, Color.BLACK);
+	    }
 	    
-	    // Draw lines
-//	    for(int i = 0; i < 30; i++) {
-//	    	drowLine(r, g, width, height);
-//	    }
-	    
-//	    for(int i = 0; i < 155; i++) {
-//	    	g.setColor(Color.BLACK);
-//	    	int x = r.nextInt(width - 1);
-//	    	int y = r.nextInt(height - 1);
-//	    	int x1 = r.nextInt(6) + 1;
-//	    	int y1 = r.nextInt(12) + 1;
-//	    	g.drawLine(x, y, x + x1, y + y1);
-//	    	setPixel(g, x, y, Color.BLACK);
-//	    }
-//	    
-//	    for(int i = 0; i < 70; i++) {
-//	    	int x = r.nextInt(width - 1);
-//	    	int y = r.nextInt(height - 1);
-//	    	int x1 = r.nextInt(12) + 1;
-//	    	int y1 = r.nextInt(6) + 1;
-//	    	g.drawLine(x, y, x - x1, y - y1);
-//	    	setPixel(g, x, y, Color.BLACK);
-//	    }
+	    for(int i = 0; i < 70; i++) {
+	    	int x = r.nextInt(width - 1);
+	    	int y = r.nextInt(height - 1);
+	    	int x1 = r.nextInt(12) + 1;
+	    	int y1 = r.nextInt(6) + 1;
+	    	g.drawLine(x, y, x - x1, y - y1);
+	    	setPixel(g, x, y, Color.BLACK);
+	    }*/
 	    
 	    // Create noise
 	    
