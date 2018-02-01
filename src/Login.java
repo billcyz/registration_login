@@ -31,6 +31,9 @@ public class Login extends HttpServlet {
 	public void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		int resultId;
+		String resultMsg;
+		
 		System.out.println("Login time is: " + currentTime);
 		
 		response.setContentType("text/html");
@@ -47,11 +50,17 @@ public class Login extends HttpServlet {
 		if(!userLogin("user_info", userName, password)) {
 			// User not found
 			
+			resultId = 0;
+			resultMsg = "{" + "\"id\"" + ":" + " " + resultId + "}";
+			out.println(resultMsg);
+			
+			
 			out.println(userName + ", " + password);
 			out.println("Result is: Error");
 		} else {
 			// Find user
-			
+			resultId = 1;
+			resultMsg = "{" + "\"id\"" + ":" + " " + resultId + "}";
 			
 			out.println("Found User");
 		}
@@ -80,9 +89,15 @@ public class Login extends HttpServlet {
 //				do {
 ////					System.out.println("NAME: " + rs.getString("name"));
 //				} while(rs.next());
+				rs.close();
+				pstmt.close();
+				conn.close();
 				return true;
 			} else {
 //				System.out.println("No data");
+				rs.close();
+				pstmt.close();
+				conn.close();
 				return false;
 			}
 		} catch (SQLException se){
